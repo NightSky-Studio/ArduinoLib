@@ -1,0 +1,20 @@
+{
+	"name": "arduinolib",
+	"version": "1.0.0",
+	"description": "NightSky Studio ArduinoLib",
+	"private": true,
+	"scripts": {
+		"docs:dev": "vuepress dev docs",
+		"docs:build": "vuepress build docs",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@vuepress/plugin-docsearch": "^2.0.0-beta.49",
+		"@vuepress/plugin-search": "^2.0.0-beta.49",
+		"install": "^0.13.0",
+		"vuepress": "^2.0.0-beta.49"
+	}
+}

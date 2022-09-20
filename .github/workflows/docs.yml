@@ -1,0 +1,45 @@
+name: VuePress Subordinate
+
+on:
+  # 每當 push 到 main 分支時觸發部署
+  push:
+    branches: [main]
+  # 手動觸發部署
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # “最近更新時間” 等 git 日誌相關資訊，需要拉取全部提交記錄
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          # 選擇要使用的 node 版本
+          node-version: "14"
+
+      # 如果緩存沒有命中，安裝依賴
+      - name: Install dependencies
+        run: npm install
+
+      # 運行構建腳本
+      - name: Build VuePress site
+        run: npm run docs:build
+
+      # 查看 workflow 的文檔來獲取更多資訊
+      # @see https://github.com/crazy-max/ghaction-github-pages
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          # 部署到 gh-pages 分支
+          target_branch: gh-pages
+          # 部署目錄為 VuePress 的預設輸出目錄
+          build_dir: docs/.vuepress/dist
+        env:
+          # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
