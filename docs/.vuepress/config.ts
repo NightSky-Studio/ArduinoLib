@@ -13,7 +13,7 @@ import {
 
 const config = defineUserConfig({
 	// 設定檔
-	base: "/", // 默認位置
+	base: "/ArduinoLib/", // 默認位置
 	lang: "zh-TW", // 語言
 	title: "夜空工作室", // 標題
 	description: "夜空工作室", // 描述
