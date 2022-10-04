@@ -1,9 +1,13 @@
 name: VuePress Subordinate
+run-name: Deploy web pages
 
 on:
   # 每當 push 到 main 分支時觸發部署
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      
   # 手動觸發部署
   workflow_dispatch:
 
